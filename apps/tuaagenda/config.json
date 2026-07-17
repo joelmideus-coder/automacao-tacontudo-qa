@@ -1,0 +1,30 @@
+{
+  "appName": "TuaAgenda",
+  "appDir": "apps/tuaagenda",
+  "baseUrl": "https://dev.tuaagenda.app",
+  "locale": "pt-BR",
+  "timezone": "America/Sao_Paulo",
+  "testInterval": 500,
+  "credentials": {
+    "email": "joelmi.deus@tacontudo.com",
+    "password": "Z@ckwailde12"
+  },
+  "selectors": {
+    "email": "#email",
+    "password": "#senha",
+    "submit": "button[type=\"submit\"]",
+    "menuItem": "nav a, .menu a, .sidebar a"
+  },
+  "levels": {
+    "smoke": 1,
+    "critical": 2,
+    "complete": 3,
+    "full": 4
+  },
+  "levelLabels": {
+    "1": "🔴 Smoke",
+    "2": "🔴 Crítica",
+    "3": "🟡 Completa",
+    "4": "🟢 Full"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "qa-framework",
+  "version": "1.0.0",
+  "description": "Framework genérico de testes automatizados com Playwright",
+  "private": true,
+  "scripts": {
+    "test": "node run.js",
+    "smoke": "TEST_LEVEL=smoke node run.js",
+    "critical": "TEST_LEVEL=critical node run.js",
+    "complete": "TEST_LEVEL=complete node run.js",
+    "full": "TEST_LEVEL=full node run.js",
+    "report": "node core/report.js",
+    "report:bugs": "node core/report-bugs.js",
+    "server": "node core/server.js",
+    "dashboard": "open core/dashboard.html"
+  },
+  "keywords": [
+    "qa",
+    "testing",
+    "playwright",
+    "automation",
+    "regression"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "docx": "^9.7.1",
+    "playwright": "^1.61.0"
+  }
+}
