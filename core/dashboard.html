@@ -246,6 +246,10 @@
   .btn-report:hover { background: #fdf2f8; border-color: #f9a8d4; }
   .btn-report .badge { background: #fdf2f8; color: #db2777; }
 
+  .btn-explore { border-left: 3px solid #f97316; }
+  .btn-explore:hover { background: #fff7ed; border-color: #fdba74; }
+  .btn-explore .badge { background: #fff7ed; color: #ea580c; font-weight: 700; }
+
   .btn-danger { border-left: 3px solid var(--danger); }
   .btn-danger:hover { background: var(--danger-light); border-color: #fca5a5; color: var(--danger); }
 
@@ -397,10 +401,31 @@
           <span class="icon-left">🟢</span>
           <span>
             <div style="font-weight:600">Full</div>
-            <div style="font-size:11px;color:var(--text-muted);font-weight:400;margin-top:1px">SQL injection, XSS, rate limiting, mobile, WebSocket, segurança</div>
+            <div style="font-size:11px;color:var(--text-muted);font-weight:400;margin-top:1px">SQL injection, XSS, rate limit, mobile, WebSocket, exploratório Myers</div>
           </span>
           <span class="badge" style="margin-left:auto">tudo</span>
           <span class="kbd">F</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Exploratorio Myers -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title"><span class="icon">🔍</span> Myers Exploratório</div>
+          <div class="card-subtitle">Adversarial · XSS · Validação · Quebrar</div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-explore" data-test="exploratory">
+          <span class="icon-left">🦊</span>
+          <span>
+            <div style="font-weight:600">Varredura Adversarial</div>
+            <div style="font-size:11px;color:var(--text-muted);font-weight:400;margin-top:1px">XSS (10 payloads), caracteres especiais (10), validação, rótulos</div>
+          </span>
+          <span class="badge" style="margin-left:auto">Myers</span>
+          <span class="kbd">X</span>
         </button>
       </div>
     </div>
@@ -627,7 +652,7 @@ async function runTest(type) {
 
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
-  const map = { s:'smoke', c:'critical', a:'complete', f:'full', r:'report', b:'report-bugs' };
+  const map = { s:'smoke', c:'critical', a:'complete', f:'full', r:'report', b:'report-bugs', x:'exploratory' };
   const test = map[e.key.toLowerCase()];
   if (test) { e.preventDefault(); runTest(test); }
 });

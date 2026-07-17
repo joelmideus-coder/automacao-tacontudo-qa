@@ -90,6 +90,7 @@ const handlers = {
       'critical': { cmd: 'node', args: ['run.js'], env: { ...baseEnv, TEST_LEVEL: 'critical' } },
       'complete': { cmd: 'node', args: ['run.js'], env: { ...baseEnv, TEST_LEVEL: 'complete' } },
       'full': { cmd: 'node', args: ['run.js'], env: { ...baseEnv, TEST_LEVEL: 'full' } },
+      'exploratory': { cmd: 'node', args: ['run.js'], env: { ...baseEnv, TEST_LEVEL: 'full' } },
       'report': { cmd: 'node', args: ['core/report.js'], env: { APP: appName } },
       'report-bugs': { cmd: 'node', args: ['core/report-bugs.js'], env: { APP: appName } },
     };
