@@ -1,6 +1,7 @@
 {
   "appName": "TuaAgenda",
   "appDir": "apps/tuaagenda",
+  "driver": "playwright",
   "baseUrl": "https://dev.tuaagenda.app",
   "locale": "pt-BR",
   "timezone": "America/Sao_Paulo",

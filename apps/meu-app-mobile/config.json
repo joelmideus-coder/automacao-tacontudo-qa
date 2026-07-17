@@ -1,0 +1,20 @@
+{
+  "appName": "Meu App Mobile",
+  "appDir": "apps/meu-app-mobile",
+  "driver": "maestro",
+  "baseUrl": "https://meu-app.com",
+  "locale": "pt-BR",
+  "timezone": "America/Sao_Paulo",
+  "levels": {
+    "smoke": 1,
+    "critical": 2,
+    "complete": 3,
+    "full": 4
+  },
+  "levelLabels": {
+    "1": "🔴 Smoke",
+    "2": "🔴 Crítica",
+    "3": "🟡 Completa",
+    "4": "🟢 Full"
+  }
+}

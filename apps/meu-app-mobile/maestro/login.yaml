@@ -1,0 +1,11 @@
+appId: com.meuapp
+---
+- launchApp
+- tapOn: "Entrar"
+- tapOn: "Email"
+- inputText: "usuario@teste.com"
+- tapOn: "Senha"
+- inputText: "minha-senha"
+- tapOn: "Entrar"
+- assertVisible: "Home"
+- takeScreenshot: "login"

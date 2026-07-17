@@ -64,6 +64,11 @@ Este não é apenas mais um framework de testes. É uma **plataforma completa de
 ├── ⚙️ core/                           # 🧠 MOTOR DO FRAMEWORK
 │   ├── runner.js                       #   Orquestrador de testes
 │   ├── helpers.js                      #   Funções utilitárias atômicas
+│   ├── drivers/                        #   🔌 Drivers de automação
+│   │   ├── index.js                    #     Carregador de drivers
+│   │   ├── playwright.js               #     🎭 Playwright (web)
+│   │   ├── maestro.js                  #     📱 Maestro (mobile)
+│   │   └── cypress.js                  #     🟡 Cypress (web)
 │   ├── report.js                       #   Gerador de relatório Word
 │   ├── report-bugs.js                  #   Gerador de relatório de bugs
 │   ├── server.js                       #   Servidor HTTP do dashboard
@@ -273,6 +278,108 @@ npm run report:bugs
 ```
 
 Arquivo gerado em: `~/Desktop/Relatorio_Bugs_<App>_<Data>.docx`
+
+<br>
+
+## 🔌 Drivers de Automação
+
+O framework suporta múltiplos **drivers** de automação. Cada aplicação escolhe o driver ideal no `config.json`.
+
+| Driver | Ideal para | Status |
+|---|---|---|
+| `playwright` | Aplicações web (SPA, React, Angular, Vue) | ✅ Estável |
+| `maestro` | Aplicativos mobile (Android, iOS) | ✅ Disponível |
+| `cypress` | Aplicações web com Cypress | ✅ Disponível |
+
+### Como usar
+
+No `config.json` da sua aplicação:
+
+```json
+{
+  "appName": "Meu App Mobile",
+  "driver": "maestro",
+  "baseUrl": "https://meu-app.com"
+}
+```
+
+### Playwright (padrão)
+
+```json
+{ "driver": "playwright" }
+```
+
+Testes em JavaScript com acesso total ao DOM. Ideal para web apps.
+
+### Maestro (mobile)
+
+```json
+{ "driver": "maestro" }
+```
+
+Os flows Maestro ficam em `apps/<app>/maestro/*.yaml`. Exemplo:
+
+```yaml
+# apps/meu-app/maestro/login.yaml
+appId: com.meuapp
+---
+- launchApp
+- tapOn: "Email"
+- inputText: "usuario@teste.com"
+- tapOn: "Entrar"
+- assertVisible: "Home"
+```
+
+Os helpers enviam comandos direto para o CLI do Maestro:
+
+```js
+module.exports = {
+  level: 'smoke',
+  category: 'Login Mobile',
+  tests: [
+    {
+      name: 'Login com sucesso',
+      fn: async (page, h) => {
+        await h.runFlow('login');    // executa maestro test login.yaml
+        await h.screenshot(page, 'login', '01-sucesso');
+      }
+    }
+  ]
+};
+```
+
+### Cypress
+
+```json
+{ "driver": "cypress" }
+```
+
+Os specs Cypress ficam em `apps/<app>/cypress/e2e/*.cy.js`.
+
+### Criar um driver novo
+
+```bash
+# 1. Crie o arquivo
+touch core/drivers/meu-driver.js
+
+# 2. Implemente a interface:
+#    - NAME: string identificadora
+#    - launch(config): retorna estado do driver
+#    - createHelpers(config): retorna objeto com funções auxiliares
+#    - destroy(state): cleanup
+# 3. Use no config.json: "driver": "meu-driver"
+```
+
+A interface esperada:
+
+```js
+module.exports = {
+  NAME: 'meu-driver',
+  async launch(config) { /* return { browser, page, context } */ },
+  createHelpers(config) { /* return { navigateAndWait, tryClick, fillField, screenshot, ... } */ },
+  async destroy(state) { /* cleanup */ }
+};
+```
 
 <br>
 
